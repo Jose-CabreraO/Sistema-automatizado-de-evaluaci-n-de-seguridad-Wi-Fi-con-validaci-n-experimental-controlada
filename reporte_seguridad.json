@@ -1,0 +1,16 @@
+{
+    "institucion": "Universidad del Norte",
+    "proyecto": "Sistema automatizado de evaluación Wi-Fi",
+    "autor": "José Cabrera",
+    "fecha_escaneo": "2026-03-16 21:45:30",
+    "total_redes": 1,
+    "resultados": [
+        {
+            "ssid": "Familia Cabrera",
+            "autenticacion": "WPA2-Personal",
+            "cifrado": "CCMP",
+            "score": 1.8,
+            "nivel_riesgo": "Bajo"
+        }
+    ]
+}
