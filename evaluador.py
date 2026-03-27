@@ -1,17 +1,22 @@
 def calcular_score(auth, cifrado, senal):
-    # Pesos (wi) y severidades (si) definidos en tu metodología [cite: 138, 147]
-    w_auth, w_cifrado, w_rssi = 0.4, 0.4, 0.2 
+    # Pesos basados en la jerarquía del estándar 802.11
+    # La autenticación y el cifrado definen la Base del riesgo
     
-    s_auth = {"WPA2-Personal": 0.3, "WPA3-Personal": 0.0}.get(auth, 0.5)
-    s_cifrado = {"CCMP": 0.0, "TKIP": 0.6}.get(cifrado, 0.5)
+    # Mapeo de severidad (0 a 1)
+    s_auth = {"WPA3-Personal": 0.1, "WPA2-Personal": 0.3, "WPA-Personal": 0.7}.get(auth, 1.0)
+    s_cifrado = {"CCMP": 0.1, "TKIP": 0.8}.get(cifrado, 0.9)
     
-    # Normalización del RSSI [cite: 132]
-    if senal >= 80: s_rssi = 1.0 
-    elif senal >= 50: s_rssi = 0.5
-    else: s_rssi = 0.2 
-
-    score = 10 * (w_auth * s_auth + w_cifrado * s_cifrado + w_rssi * s_rssi)
-    return round(score, 2)
+    # Base Score: Promedio de seguridad técnica
+    base_score = (s_auth + s_cifrado) / 2
+    
+    # Factor de Proximidad (Señal): Si la señal es muy baja, 
+    # es más difícil explotar la red, bajamos levemente el riesgo.
+    if senal >= 80: f_senal = 1.0    # Muy cerca
+    elif senal >= 50: f_senal = 0.8  # Rango medio
+    else: f_senal = 0.5             # Muy lejos
+    
+    final_score = (base_score * f_senal) * 10
+    return round(final_score, 2)
 
 def obtener_riesgo(score):
     if score >= 9.0: return "CRÍTICO"
