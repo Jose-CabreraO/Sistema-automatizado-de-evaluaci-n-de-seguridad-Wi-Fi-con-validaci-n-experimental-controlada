@@ -72,7 +72,7 @@ def main():
         # Resumen final
         criticos = sum(1 for r in redes if r['resultado']['nivel_riesgo'] == "CRÍTICO")
         print("\n" + "="*90)
-        print(f" ANÁLISIS COMPLETADO")
+        print(f"ANÁLISIS COMPLETADO")
         print(f"   Total de redes: {len(redes)}")
         print(f"   Redes Críticas: {criticos}")
         print(f"   Archivos generados:")
