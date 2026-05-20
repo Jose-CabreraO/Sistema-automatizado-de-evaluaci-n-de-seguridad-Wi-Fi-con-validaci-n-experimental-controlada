@@ -1,195 +1,187 @@
 {
-  "timestamp": "2026-05-20T20:43:18.530760",
-  "total_redes": 9,
-  "redes": [
-    {
-      "ssid": "ruben",
-      "bssid": null,
-      "canal": 10,
-      "senal": 0,
-      "autenticacion": null,
-      "cifrado": "CCMP",
-      "tipo_red": "Infraestructura",
-      "timestamp": "2026-05-20T20:43:18.529839",
-      "resultado": {
-        "puntaje_base": 5.5,
-        "puntaje_final": 2.75,
-        "vector_wss": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
-        "nivel_riesgo": "BAJO",
-        "detalles": {
-          "severidad_auth": 1.0,
-          "severidad_cifrado": 0.1,
-          "factor_explotabilidad": 0.5
-        }
-      }
+    "metadata": {
+        "fecha_generacion": "2026-05-20 20:55:18",
+        "autor": "Arturo Rafael Ferreira Cardozo - José Luis Cabrera Oviedo",
+        "titulo": "Sistema automatizado de evaluación de seguridad Wi-Fi",
+        "universidad": "Universidad del Norte",
+        "version": "1.0"
     },
-    {
-      "ssid": "CasaLab",
-      "bssid": null,
-      "canal": 6,
-      "senal": 0,
-      "autenticacion": null,
-      "cifrado": "CCMP",
-      "tipo_red": "Infraestructura",
-      "timestamp": "2026-05-20T20:43:18.529943",
-      "resultado": {
-        "puntaje_base": 5.5,
-        "puntaje_final": 2.75,
-        "vector_wss": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
-        "nivel_riesgo": "BAJO",
-        "detalles": {
-          "severidad_auth": 1.0,
-          "severidad_cifrado": 0.1,
-          "factor_explotabilidad": 0.5
-        }
-      }
+    "estadisticas": {
+        "total_redes_detectadas": 9,
+        "redes_criticas": 0,
+        "redes_altas": 0
     },
-    {
-      "ssid": "Mari.v,",
-      "bssid": null,
-      "canal": 6,
-      "senal": 0,
-      "autenticacion": null,
-      "cifrado": "Ninguna",
-      "tipo_red": "Infraestructura",
-      "timestamp": "2026-05-20T20:43:18.529975",
-      "resultado": {
-        "puntaje_base": 10.0,
-        "puntaje_final": 5.0,
-        "vector_wss": "WSS:1.0/AU:1.0/EN:1.0/EX:0.5",
-        "nivel_riesgo": "MEDIO",
-        "detalles": {
-          "severidad_auth": 1.0,
-          "severidad_cifrado": 1.0,
-          "factor_explotabilidad": 0.5
+    "redes": [
+        {
+            "ssid": "ruben",
+            "bssid": null,
+            "canal": 10,
+            "senal": 0,
+            "autenticacion": null,
+            "cifrado": "CCMP",
+            "wss": {
+                "vector": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
+                "puntaje_base": 5.5,
+                "puntaje_final": 2.75,
+                "nivel_riesgo": "BAJO",
+                "detalles": {
+                    "severidad_auth": 1.0,
+                    "severidad_cifrado": 0.1,
+                    "factor_explotabilidad": 0.5
+                }
+            }
+        },
+        {
+            "ssid": "Mari.v,",
+            "bssid": null,
+            "canal": 6,
+            "senal": 0,
+            "autenticacion": null,
+            "cifrado": "Ninguna",
+            "wss": {
+                "vector": "WSS:1.0/AU:1.0/EN:1.0/EX:0.5",
+                "puntaje_base": 10.0,
+                "puntaje_final": 5.0,
+                "nivel_riesgo": "MEDIO",
+                "detalles": {
+                    "severidad_auth": 1.0,
+                    "severidad_cifrado": 1.0,
+                    "factor_explotabilidad": 0.5
+                }
+            }
+        },
+        {
+            "ssid": "CasaLab",
+            "bssid": null,
+            "canal": 6,
+            "senal": 0,
+            "autenticacion": null,
+            "cifrado": "CCMP",
+            "wss": {
+                "vector": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
+                "puntaje_base": 5.5,
+                "puntaje_final": 2.75,
+                "nivel_riesgo": "BAJO",
+                "detalles": {
+                    "severidad_auth": 1.0,
+                    "severidad_cifrado": 0.1,
+                    "factor_explotabilidad": 0.5
+                }
+            }
+        },
+        {
+            "ssid": "ARIEL FRANCO_Invitado",
+            "bssid": null,
+            "canal": 11,
+            "senal": 0,
+            "autenticacion": null,
+            "cifrado": "CCMP",
+            "wss": {
+                "vector": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
+                "puntaje_base": 5.5,
+                "puntaje_final": 2.75,
+                "nivel_riesgo": "BAJO",
+                "detalles": {
+                    "severidad_auth": 1.0,
+                    "severidad_cifrado": 0.1,
+                    "factor_explotabilidad": 0.5
+                }
+            }
+        },
+        {
+            "ssid": "ARIEL FRANCO",
+            "bssid": null,
+            "canal": 11,
+            "senal": 0,
+            "autenticacion": null,
+            "cifrado": "CCMP",
+            "wss": {
+                "vector": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
+                "puntaje_base": 5.5,
+                "puntaje_final": 2.75,
+                "nivel_riesgo": "BAJO",
+                "detalles": {
+                    "severidad_auth": 1.0,
+                    "severidad_cifrado": 0.1,
+                    "factor_explotabilidad": 0.5
+                }
+            }
+        },
+        {
+            "ssid": "Flia Ferreira",
+            "bssid": null,
+            "canal": 11,
+            "senal": 0,
+            "autenticacion": null,
+            "cifrado": "CCMP",
+            "wss": {
+                "vector": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
+                "puntaje_base": 5.5,
+                "puntaje_final": 2.75,
+                "nivel_riesgo": "BAJO",
+                "detalles": {
+                    "severidad_auth": 1.0,
+                    "severidad_cifrado": 0.1,
+                    "factor_explotabilidad": 0.5
+                }
+            }
+        },
+        {
+            "ssid": "Mari.v,",
+            "bssid": null,
+            "canal": 6,
+            "senal": 0,
+            "autenticacion": null,
+            "cifrado": "Ninguna",
+            "wss": {
+                "vector": "WSS:1.0/AU:1.0/EN:1.0/EX:0.5",
+                "puntaje_base": 10.0,
+                "puntaje_final": 5.0,
+                "nivel_riesgo": "MEDIO",
+                "detalles": {
+                    "severidad_auth": 1.0,
+                    "severidad_cifrado": 1.0,
+                    "factor_explotabilidad": 0.5
+                }
+            }
+        },
+        {
+            "ssid": "CasaLab",
+            "bssid": null,
+            "canal": 6,
+            "senal": 0,
+            "autenticacion": null,
+            "cifrado": "CCMP",
+            "wss": {
+                "vector": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
+                "puntaje_base": 5.5,
+                "puntaje_final": 2.75,
+                "nivel_riesgo": "BAJO",
+                "detalles": {
+                    "severidad_auth": 1.0,
+                    "severidad_cifrado": 0.1,
+                    "factor_explotabilidad": 0.5
+                }
+            }
+        },
+        {
+            "ssid": "ruben",
+            "bssid": null,
+            "canal": 10,
+            "senal": 0,
+            "autenticacion": null,
+            "cifrado": "CCMP",
+            "wss": {
+                "vector": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
+                "puntaje_base": 5.5,
+                "puntaje_final": 2.75,
+                "nivel_riesgo": "BAJO",
+                "detalles": {
+                    "severidad_auth": 1.0,
+                    "severidad_cifrado": 0.1,
+                    "factor_explotabilidad": 0.5
+                }
+            }
         }
-      }
-    },
-    {
-      "ssid": "ARIEL FRANCO_Invitado",
-      "bssid": null,
-      "canal": 11,
-      "senal": 0,
-      "autenticacion": null,
-      "cifrado": "CCMP",
-      "tipo_red": "Infraestructura",
-      "timestamp": "2026-05-20T20:43:18.530008",
-      "resultado": {
-        "puntaje_base": 5.5,
-        "puntaje_final": 2.75,
-        "vector_wss": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
-        "nivel_riesgo": "BAJO",
-        "detalles": {
-          "severidad_auth": 1.0,
-          "severidad_cifrado": 0.1,
-          "factor_explotabilidad": 0.5
-        }
-      }
-    },
-    {
-      "ssid": "Flia Ferreira",
-      "bssid": null,
-      "canal": 11,
-      "senal": 0,
-      "autenticacion": null,
-      "cifrado": "CCMP",
-      "tipo_red": "Infraestructura",
-      "timestamp": "2026-05-20T20:43:18.530040",
-      "resultado": {
-        "puntaje_base": 5.5,
-        "puntaje_final": 2.75,
-        "vector_wss": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
-        "nivel_riesgo": "BAJO",
-        "detalles": {
-          "severidad_auth": 1.0,
-          "severidad_cifrado": 0.1,
-          "factor_explotabilidad": 0.5
-        }
-      }
-    },
-    {
-      "ssid": "ARIEL FRANCO",
-      "bssid": null,
-      "canal": 11,
-      "senal": 0,
-      "autenticacion": null,
-      "cifrado": "CCMP",
-      "tipo_red": "Infraestructura",
-      "timestamp": "2026-05-20T20:43:18.530074",
-      "resultado": {
-        "puntaje_base": 5.5,
-        "puntaje_final": 2.75,
-        "vector_wss": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
-        "nivel_riesgo": "BAJO",
-        "detalles": {
-          "severidad_auth": 1.0,
-          "severidad_cifrado": 0.1,
-          "factor_explotabilidad": 0.5
-        }
-      }
-    },
-    {
-      "ssid": "Flia Ferreira",
-      "bssid": null,
-      "canal": 11,
-      "senal": 0,
-      "autenticacion": null,
-      "cifrado": "CCMP",
-      "tipo_red": "Infraestructura",
-      "timestamp": "2026-05-20T20:43:18.530105",
-      "resultado": {
-        "puntaje_base": 5.5,
-        "puntaje_final": 2.75,
-        "vector_wss": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
-        "nivel_riesgo": "BAJO",
-        "detalles": {
-          "severidad_auth": 1.0,
-          "severidad_cifrado": 0.1,
-          "factor_explotabilidad": 0.5
-        }
-      }
-    },
-    {
-      "ssid": "CasaLab",
-      "bssid": null,
-      "canal": 6,
-      "senal": 0,
-      "autenticacion": null,
-      "cifrado": "CCMP",
-      "tipo_red": "Infraestructura",
-      "timestamp": "2026-05-20T20:43:18.530198",
-      "resultado": {
-        "puntaje_base": 5.5,
-        "puntaje_final": 2.75,
-        "vector_wss": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
-        "nivel_riesgo": "BAJO",
-        "detalles": {
-          "severidad_auth": 1.0,
-          "severidad_cifrado": 0.1,
-          "factor_explotabilidad": 0.5
-        }
-      }
-    },
-    {
-      "ssid": "ruben",
-      "bssid": null,
-      "canal": 10,
-      "senal": 0,
-      "autenticacion": null,
-      "cifrado": "CCMP",
-      "tipo_red": "Infraestructura",
-      "timestamp": "2026-05-20T20:43:18.530239",
-      "resultado": {
-        "puntaje_base": 5.5,
-        "puntaje_final": 2.75,
-        "vector_wss": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
-        "nivel_riesgo": "BAJO",
-        "detalles": {
-          "severidad_auth": 1.0,
-          "severidad_cifrado": 0.1,
-          "factor_explotabilidad": 0.5
-        }
-      }
-    }
-  ]
+    ]
 }
