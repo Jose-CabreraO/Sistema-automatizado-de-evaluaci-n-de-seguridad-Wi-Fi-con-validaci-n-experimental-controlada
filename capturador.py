@@ -50,7 +50,7 @@ def guardar_json(redes: list, filename="redes_capturadas.json"):
             "total_redes": len(redes),
             "redes": redes
         }, f, indent=2, ensure_ascii=False)
-    print(f"✅ Datos guardados en {filename}")
+    print(f"Datos guardados en {filename}")
     return filename
 
 
