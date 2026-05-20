@@ -1,51 +1,79 @@
-from fpdf import FPDF
+# reporte.py
+from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from datetime import datetime
+import json
 
-class ReporteSeguridad(FPDF):
-    def header(self):
-        # Configuración del encabezado profesional
-        self.set_font("Arial", "B", 12)
-        self.cell(0, 10, "UNIVERSIDAD DEL NORTE - FACULTAD DE INGENIERÍA", ln=True, align="C")
-        self.set_font("Arial", "I", 10)
-        self.cell(0, 10, "Sistema Automatizado de Evaluación Wi-Fi", ln=True, align="C")
-        self.ln(10)
-
-    def footer(self):
-        self.set_y(-15)
-        self.set_font("Arial", "I", 8)
-        self.cell(0, 10, f"Página {self.page_no()} | Generado por José Cabrera", align="C")
-
-def generar_pdf(redes_evaluadas, nombre_grafico):
-    pdf = ReporteSeguridad()
-    pdf.add_page()
+def generar_reporte_pdf(redes_con_resultados: list, filename="Reporte_Seguridad_WiFi.pdf"):
+    """Genera reporte PDF profesional según estándares de la tesis"""
     
-    # 1. Introducción
-    pdf.set_font("Arial", "B", 14)
-    pdf.cell(0, 10, "Reporte de Evaluación de Riesgo Técnico", ln=True)
-    pdf.set_font("Arial", "", 11)
-    fecha = datetime.now().strftime("%d/%m/%Y %H:%M")
-    pdf.cell(0, 10, f"Fecha de escaneo: {fecha}", ln=True)
-    pdf.ln(5)
+    doc = SimpleDocTemplate(filename, pagesize=A4, rightMargin=50, leftMargin=50, topMargin=50, bottomMargin=50)
+    styles = getSampleStyleSheet()
+    
+    # Estilos personalizados
+    title_style = ParagraphStyle('Title', parent=styles['Title'], fontSize=16, spaceAfter=30)
+    heading_style = ParagraphStyle('Heading', parent=styles['Heading2'], fontSize=14, spaceAfter=12)
+    
+    elements = []
+    
+    # Cabecera
+    elements.append(Paragraph("Sistema Automatizado de Evaluación de Seguridad Wi-Fi", title_style))
+    elements.append(Paragraph(f"Reporte Técnico - {datetime.now().strftime('%d de %B de %Y')}", styles['Normal']))
+    elements.append(Spacer(1, 20))
+    
+    # Resumen ejecutivo
+    elements.append(Paragraph("Resumen Ejecutivo", heading_style))
+    total = len(redes_con_resultados)
+    criticos = sum(1 for r in redes_con_resultados if r['resultado']['nivel_riesgo'] == "CRÍTICO")
+    elements.append(Paragraph(f"Se detectaron <b>{total}</b> redes. <b>{criticos}</b> presentan riesgo crítico.", styles['Normal']))
+    elements.append(Spacer(1, 20))
+    
+    # Tabla de resultados
+    elements.append(Paragraph("Resultados de Evaluación", heading_style))
+    
+    data = [["SSID", "Autenticación", "Cifrado", "Señal", "Score", "Nivel"]]
+    
+    for red in redes_con_resultados:
+        res = red['resultado']
+        data.append([
+            red['ssid'][:25],
+            red.get('autenticacion', 'N/A')[:20],
+            red.get('cifrado', 'N/A')[:15],
+            f"{red.get('senal', 0)}%",
+            f"{res['puntaje_final']}",
+            res['nivel_riesgo']
+        ])
+    
+    table = Table(data, colWidths=[120, 100, 90, 50, 50, 70])
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#1f4e79')),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 10),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.white),
+        ('GRID', (0, 0), (-1, -1), 1, colors.black),
+    ]))
+    elements.append(table)
+    elements.append(Spacer(1, 20))
+    
+    # Vector WSS de ejemplo
+    if redes_con_resultados:
+        elements.append(Paragraph("Ejemplo de Vector WSS", heading_style))
+        elements.append(Paragraph(f"<i>{redes_con_resultados[0]['resultado']['vector_wss']}</i>", styles['Normal']))
+    
+    doc.build(elements)
+    print(f"Reporte PDF generado: {filename}")
+    return filename
 
-    # 2. Insertar el Gráfico (Módulo de Visualización)
-    if nombre_grafico:
-        pdf.image(nombre_grafico, x=10, y=None, w=180)
-        pdf.ln(10)
 
-    # 3. Tabla de Resultados
-    pdf.set_font("Arial", "B", 11)
-    pdf.cell(80, 10, "Nombre de Red (SSID)", 1)
-    pdf.cell(40, 10, "Score (0-10)", 1)
-    pdf.cell(40, 10, "Riesgo", 1)
-    pdf.ln()
-
-    pdf.set_font("Arial", "", 10)
-    for red in redes_evaluadas:
-        pdf.cell(80, 10, red['info']['nombre'], 1)
-        pdf.cell(40, 10, str(red['score']), 1)
-        pdf.cell(40, 10, red['riesgo'], 1)
-        pdf.ln()
-
-    # Guardar el archivo final
-    pdf.output("Reporte_Auditoria_WiFi.pdf")
-    print("\n[+] PDF generado: Reporte_Auditoria_WiFi.pdf")
+# Función de integración fácil
+def generar_reporte_desde_json(json_file="redes_capturadas.json"):
+    with open(json_file, encoding='utf-8') as f:
+        data = json.load(f)
+    
+    # Aquí iría el enriquecimiento con resultados WSS
+    return generar_reporte_pdf(data["redes"])
