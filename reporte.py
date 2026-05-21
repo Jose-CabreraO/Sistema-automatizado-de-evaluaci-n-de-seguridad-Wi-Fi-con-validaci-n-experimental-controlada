@@ -1,4 +1,3 @@
-# reporte.py
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
@@ -7,12 +6,11 @@ from datetime import datetime
 import json
 
 def generar_reporte_pdf(redes_con_resultados: list, filename="Reporte_Seguridad_WiFi.pdf"):
-    """Genera reporte PDF profesional según estándares de la tesis"""
+    """Genera reporte PDF profesional"""
     
     doc = SimpleDocTemplate(filename, pagesize=A4, rightMargin=50, leftMargin=50, topMargin=50, bottomMargin=50)
     styles = getSampleStyleSheet()
     
-    # Estilos personalizados
     title_style = ParagraphStyle('Title', parent=styles['Title'], fontSize=16, spaceAfter=30)
     heading_style = ParagraphStyle('Heading', parent=styles['Heading2'], fontSize=14, spaceAfter=12)
     
@@ -26,7 +24,7 @@ def generar_reporte_pdf(redes_con_resultados: list, filename="Reporte_Seguridad_
     # Resumen ejecutivo
     elements.append(Paragraph("Resumen Ejecutivo", heading_style))
     total = len(redes_con_resultados)
-    criticos = sum(1 for r in redes_con_resultados if r['resultado']['nivel_riesgo'] == "CRÍTICO")
+    criticos = sum(1 for r in redes_con_resultados if r.get('resultado', {}).get('nivel_riesgo') == "CRÍTICO")
     elements.append(Paragraph(f"Se detectaron <b>{total}</b> redes. <b>{criticos}</b> presentan riesgo crítico.", styles['Normal']))
     elements.append(Spacer(1, 20))
     
@@ -36,14 +34,20 @@ def generar_reporte_pdf(redes_con_resultados: list, filename="Reporte_Seguridad_
     data = [["SSID", "Autenticación", "Cifrado", "Señal", "Score", "Nivel"]]
     
     for red in redes_con_resultados:
-        res = red['resultado']
+        res = red.get('resultado') or {}
+        auth = red.get('autenticacion') or 'N/A'
+        cifrado = red.get('cifrado') or 'N/A'
+        senal = red.get('senal', 0)
+        score = res.get('puntaje_final', 0)
+        nivel = res.get('nivel_riesgo', 'N/A')
+        
         data.append([
-            red['ssid'][:25],
-            red.get('autenticacion', 'N/A')[:20],
-            red.get('cifrado', 'N/A')[:15],
-            f"{red.get('senal', 0)}%",
-            f"{res['puntaje_final']}",
-            res['nivel_riesgo']
+            str(red.get('ssid', 'N/A'))[:25],
+            str(auth)[:20],
+            str(cifrado)[:15],
+            f"{senal}%",
+            f"{score:.2f}",
+            nivel
         ])
     
     table = Table(data, colWidths=[120, 100, 90, 50, 50, 70])
@@ -61,19 +65,10 @@ def generar_reporte_pdf(redes_con_resultados: list, filename="Reporte_Seguridad_
     elements.append(Spacer(1, 20))
     
     # Vector WSS de ejemplo
-    if redes_con_resultados:
+    if redes_con_resultados and redes_con_resultados[0].get('resultado'):
         elements.append(Paragraph("Ejemplo de Vector WSS", heading_style))
-        elements.append(Paragraph(f"<i>{redes_con_resultados[0]['resultado']['vector_wss']}</i>", styles['Normal']))
+        elements.append(Paragraph(f"<i>{redes_con_resultados[0]['resultado'].get('vector_wss', 'N/A')}</i>", styles['Normal']))
     
     doc.build(elements)
     print(f"Reporte PDF generado: {filename}")
     return filename
-
-
-# Función de integración fácil
-def generar_reporte_desde_json(json_file="redes_capturadas.json"):
-    with open(json_file, encoding='utf-8') as f:
-        data = json.load(f)
-    
-    # Aquí iría el enriquecimiento con resultados WSS
-    return generar_reporte_pdf(data["redes"])
