@@ -1,2 +1,16 @@
 __pycache__/
 *.pyc
+.env
+venv/
+.venv/
+
+# Reportes generados
+*.pdf
+*.json
+*.png
+
+# Debug real de redes
+netsh_debug.txt
+redes_analizadas.json
+reporte_seguridad.json
+Reporte_*.pdf
