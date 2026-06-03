@@ -1,13 +1,13 @@
 {
     "metadata": {
-        "fecha_generacion": "2026-05-20 20:55:18",
+        "fecha_generacion": "2026-05-20 21:05:11",
         "autor": "Arturo Rafael Ferreira Cardozo - José Luis Cabrera Oviedo",
         "titulo": "Sistema automatizado de evaluación de seguridad Wi-Fi",
         "universidad": "Universidad del Norte",
         "version": "1.0"
     },
     "estadisticas": {
-        "total_redes_detectadas": 9,
+        "total_redes_detectadas": 10,
         "redes_criticas": 0,
         "redes_altas": 0
     },
@@ -16,6 +16,25 @@
             "ssid": "ruben",
             "bssid": null,
             "canal": 10,
+            "senal": 0,
+            "autenticacion": null,
+            "cifrado": "CCMP",
+            "wss": {
+                "vector": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
+                "puntaje_base": 5.5,
+                "puntaje_final": 2.75,
+                "nivel_riesgo": "BAJO",
+                "detalles": {
+                    "severidad_auth": 1.0,
+                    "severidad_cifrado": 0.1,
+                    "factor_explotabilidad": 0.5
+                }
+            }
+        },
+        {
+            "ssid": "CasaLab",
+            "bssid": null,
+            "canal": 6,
             "senal": 0,
             "autenticacion": null,
             "cifrado": "CCMP",
@@ -51,26 +70,7 @@
             }
         },
         {
-            "ssid": "CasaLab",
-            "bssid": null,
-            "canal": 6,
-            "senal": 0,
-            "autenticacion": null,
-            "cifrado": "CCMP",
-            "wss": {
-                "vector": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
-                "puntaje_base": 5.5,
-                "puntaje_final": 2.75,
-                "nivel_riesgo": "BAJO",
-                "detalles": {
-                    "severidad_auth": 1.0,
-                    "severidad_cifrado": 0.1,
-                    "factor_explotabilidad": 0.5
-                }
-            }
-        },
-        {
-            "ssid": "ARIEL FRANCO_Invitado",
+            "ssid": "Flia Ferreira",
             "bssid": null,
             "canal": 11,
             "senal": 0,
@@ -108,9 +108,28 @@
             }
         },
         {
-            "ssid": "Flia Ferreira",
+            "ssid": "ARIEL FRANCO_Invitado",
             "bssid": null,
             "canal": 11,
+            "senal": 0,
+            "autenticacion": null,
+            "cifrado": "CCMP",
+            "wss": {
+                "vector": "WSS:1.0/AU:1.0/EN:0.1/EX:0.5",
+                "puntaje_base": 5.5,
+                "puntaje_final": 2.75,
+                "nivel_riesgo": "BAJO",
+                "detalles": {
+                    "severidad_auth": 1.0,
+                    "severidad_cifrado": 0.1,
+                    "factor_explotabilidad": 0.5
+                }
+            }
+        },
+        {
+            "ssid": "HONOR X7c",
+            "bssid": null,
+            "canal": 1,
             "senal": 0,
             "autenticacion": null,
             "cifrado": "CCMP",
